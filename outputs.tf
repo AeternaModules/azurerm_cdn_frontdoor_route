@@ -1,3 +1,7 @@
+output "cdn_frontdoor_routes_id" {
+  description = "Map of id values across all cdn_frontdoor_routes, keyed the same as var.cdn_frontdoor_routes"
+  value       = { for k, v in azurerm_cdn_frontdoor_route.cdn_frontdoor_routes : k => v.id }
+}
 output "cdn_frontdoor_routes_cache" {
   description = "Map of cache values across all cdn_frontdoor_routes, keyed the same as var.cdn_frontdoor_routes"
   value       = { for k, v in azurerm_cdn_frontdoor_route.cdn_frontdoor_routes : k => v.cache }
