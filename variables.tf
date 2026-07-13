@@ -44,37 +44,6 @@ EOT
       query_strings                 = optional(list(string))
     }))
   }))
-  # --- Unconfirmed validation candidates, derived from azurerm_cdn_frontdoor_route's provider source ---
-  # Not auto-enabled: either a bespoke provider validator we can't safely translate,
-  # or a path that crosses a list-typed block (needs its own for_each wrapping).
-  # Review, translate into a real validation{} block above, and delete once confirmed.
-  # path: name
-  #   source:    validate.FrontDoorRouteName: no recognizable `if ... { errors = append(...) }` pattern - read it by hand
-  # path: cdn_frontdoor_endpoint_id
-  #   source:    [from validate.FrontDoorEndpointID] !ok
-  # path: cdn_frontdoor_endpoint_id
-  #   source:    [from validate.FrontDoorEndpointID] err != nil
-  # path: cdn_frontdoor_origin_group_id
-  #   source:    [from validate.FrontDoorOriginGroupID] !ok
-  # path: cdn_frontdoor_origin_group_id
-  #   source:    [from validate.FrontDoorOriginGroupID] err != nil
-  # path: cdn_frontdoor_origin_ids[*]
-  #   source:    [from validate.FrontDoorOriginID] !ok
-  # path: cdn_frontdoor_origin_ids[*]
-  #   source:    [from validate.FrontDoorOriginID] err != nil
-  # path: cdn_frontdoor_custom_domain_ids[*]
-  #   source:    [from validate.FrontDoorCustomDomainID] !ok
-  # path: cdn_frontdoor_custom_domain_ids[*]
-  #   source:    [from validate.FrontDoorCustomDomainID] err != nil
-  # path: cache.query_strings[*]
-  #   source:    validation.StringDoesNotContainAny(...) - no translation rule yet, add one
-  # path: cache.query_string_caching_behavior
-  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
-  # path: cache.content_types_to_compress[*]
-  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
-  # path: forwarding_protocol
-  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
-  # path: supported_protocols[*]
-  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
+  # Note: 14 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
