@@ -33,14 +33,14 @@ EOT
     cdn_frontdoor_origin_ids        = optional(list(string))
     cdn_frontdoor_origin_path       = optional(string)
     cdn_frontdoor_rule_set_ids      = optional(set(string))
-    enabled                         = optional(bool)   # Default: true
-    forwarding_protocol             = optional(string) # Default: "MatchRequest"
-    https_redirect_enabled          = optional(bool)   # Default: true
-    link_to_default_domain          = optional(bool)   # Default: true
+    enabled                         = optional(bool)
+    forwarding_protocol             = optional(string)
+    https_redirect_enabled          = optional(bool)
+    link_to_default_domain          = optional(bool)
     cache = optional(object({
-      compression_enabled           = optional(bool) # Default: false
+      compression_enabled           = optional(bool)
       content_types_to_compress     = optional(list(string))
-      query_string_caching_behavior = optional(string) # Default: "IgnoreQueryString"
+      query_string_caching_behavior = optional(string)
       query_strings                 = optional(list(string))
     }))
   }))
