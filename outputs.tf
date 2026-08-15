@@ -4,7 +4,7 @@ output "cdn_frontdoor_routes_id" {
 }
 output "cdn_frontdoor_routes_cache" {
   description = "Map of cache values across all cdn_frontdoor_routes, keyed the same as var.cdn_frontdoor_routes"
-  value       = { for k, v in azurerm_cdn_frontdoor_route.cdn_frontdoor_routes : k => v.cache if v.cache != null && length(v.cache) > 0 }
+  value       = { for k, v in azurerm_cdn_frontdoor_route.cdn_frontdoor_routes : k => one(v.cache) if v.cache != null && length(v.cache) > 0 }
 }
 output "cdn_frontdoor_routes_cdn_frontdoor_custom_domain_ids" {
   description = "Map of cdn_frontdoor_custom_domain_ids values across all cdn_frontdoor_routes, keyed the same as var.cdn_frontdoor_routes"
